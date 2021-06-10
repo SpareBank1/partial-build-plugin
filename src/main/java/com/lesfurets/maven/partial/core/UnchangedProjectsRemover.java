@@ -60,7 +60,7 @@ public class UnchangedProjectsRemover {
         if (configuration.writeChanged) {
             Path defaultPath = Modules.getPath(mavenSession.getTopLevelProject()).resolve(CHANGED_PROJECTS);
             Path outputFilePath = configuration.outputFile.orElse(defaultPath);
-            writeChangedProjectsToFile(sortedChanged, outputFilePath.toFile());
+            writeChangedProjectsToFile(sortedChanged, outputFilePath.toFile(), configuration.skipModuleVersionInOutputFile);
         }
     }
 

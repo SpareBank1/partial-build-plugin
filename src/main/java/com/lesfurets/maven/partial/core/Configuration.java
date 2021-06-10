@@ -40,6 +40,7 @@ public class Configuration {
     public final boolean fetchReferenceBranch;
     public final Optional<Path> outputFile;
     public final boolean writeChanged;
+    public final boolean skipModuleVersionInOutputFile;
     public final String ignoreChangedPattern;
     public final String buildAnywaysPattern;
     public final boolean buildSnapshotDependencies;
@@ -75,6 +76,7 @@ public class Configuration {
             fetchBaseBranch = Boolean.valueOf(Property.fetchBaseBranch.getValue());
             outputFile = parseOutputFile(session, Property.outputFile.getValue());
             writeChanged = Boolean.valueOf(Property.writeChanged.getValue());
+            skipModuleVersionInOutputFile = Boolean.valueOf(Property.skipModuleVersionInOutputFile.getValue());
             buildSnapshotDependencies = Boolean.valueOf(Property.buildSnapshotDependencies.getValue());
             impacted = Boolean.valueOf(Property.impacted.getValue());
             ignoreAllReactorProjects = Boolean.valueOf(Property.ignoreAllReactorProjects.getValue());
@@ -171,6 +173,7 @@ public class Configuration {
                         .append("fetchReferenceBranch", fetchReferenceBranch)
                         .append("outputFile", outputFile)
                         .append("writeChanged", writeChanged)
+                        .append("skipModuleVersionInOutputFile", skipModuleVersionInOutputFile)
                         .append("ignoreChangedPattern", ignoreChangedPattern)
                         .append("buildAnyways", buildAnywaysPattern)
                         .append("buildSnapshotDependencies", buildSnapshotDependencies)

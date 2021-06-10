@@ -15,6 +15,7 @@ public enum Property {
     fetchReferenceBranch("false"),
     outputFile("changed.projects"),
     writeChanged("true"),
+    skipModuleVersionInOutputFile("false"),
     ignoreChanged(""),
     buildAnyways(""),
     buildSnapshotDependencies("false"),
