@@ -15,11 +15,17 @@ public class PluginUtils {
 
     private static Logger logger = LoggerFactory.getLogger(PluginUtils.class);
 
-    private static Function<MavenProject, String> projectIdWriter = project ->
-                    project.getGroupId() + ":" + project.getArtifactId() + ":" + project.getVersion();
-
-    private static Function<MavenProject, String> projectIdWriterWithoutVersion = project ->
+    private static Function<MavenProject, String> projectIdWriterWithoutVersionAndWithoutFilePath = project ->
             project.getGroupId() + ":" + project.getArtifactId();
+
+    private static Function<MavenProject, String> projectIdWriterWithVersionAndWithoutFilePath = project ->
+            project.getGroupId() + ":" + project.getArtifactId() + ":" + project.getVersion();
+
+    private static Function<MavenProject, String> projectIdWriterWithoutVersionWithFilePath = project ->
+            project.getGroupId() + ":" + project.getArtifactId() + ", " + project.getBasedir().getAbsolutePath();
+
+    private static Function<MavenProject, String> projectIdWriterWithVersionAndWithFilePath = project ->
+            project.getGroupId() + ":" + project.getArtifactId() + ":" + project.getVersion() + ", " + project.getBasedir().getAbsolutePath();
 
     public static String extractPluginConfigValue(String parameter, Plugin plugin) {
         String value = extractConfigValue(parameter, plugin.getConfiguration());
@@ -38,16 +44,24 @@ public class PluginUtils {
     }
 
     public static void writeChangedProjectsToFile(Collection<MavenProject> projects, File outputFile,
-                    StringJoiner joiner, boolean skipModuleVersionInOutputFile) {
+                    StringJoiner joiner, boolean skipModuleVersionInOutputFile, boolean skipFilePath) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile)))) {
-            writer.write(joinProjectIds(projects, joiner, skipModuleVersionInOutputFile ? projectIdWriterWithoutVersion : projectIdWriter).toString());
+            if (skipModuleVersionInOutputFile && skipFilePath) {
+                writer.write(joinProjectIds(projects, joiner,  projectIdWriterWithoutVersionAndWithoutFilePath).toString());
+            } else if (!skipModuleVersionInOutputFile && skipFilePath) {
+                writer.write(joinProjectIds(projects, joiner, projectIdWriterWithVersionAndWithoutFilePath).toString());
+            } else if (skipModuleVersionInOutputFile && !skipFilePath) {
+                writer.write(joinProjectIds(projects, joiner, projectIdWriterWithoutVersionWithFilePath).toString());
+            } else if (!skipModuleVersionInOutputFile && !skipFilePath) {
+                writer.write(joinProjectIds(projects, joiner, projectIdWriterWithVersionAndWithFilePath).toString());
+            }
         } catch (IOException e) {
             logger.warn("Error writing changed projects to file on path :" + outputFile.getPath(), e);
         }
     }
 
-    public static void writeChangedProjectsToFile(Collection<MavenProject> projects, File outputFile, boolean skipModuleVersionInOutputFile) {
-        writeChangedProjectsToFile(projects, outputFile, new StringJoiner("\n"), skipModuleVersionInOutputFile);
+    public static void writeChangedProjectsToFile(Collection<MavenProject> projects, File outputFile, boolean skipModuleVersionInOutputFile, boolean skipFilePathInOutputFile) {
+        writeChangedProjectsToFile(projects, outputFile, new StringJoiner("\n"), skipModuleVersionInOutputFile, skipFilePathInOutputFile);
     }
 
     public static StringJoiner joinProjectIds(Collection<MavenProject> projects, StringJoiner joiner) {
