@@ -1,9 +1,5 @@
 package com.lesfurets.maven.partial.utils;
 
-import java.io.*;
-import java.util.*;
-import java.util.function.Function;
-
 import org.apache.maven.model.Plugin;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.StringUtils;
@@ -11,12 +7,19 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.*;
+import java.util.*;
+import java.util.function.Function;
+
 public class PluginUtils {
 
     private static Logger logger = LoggerFactory.getLogger(PluginUtils.class);
 
     private static Function<MavenProject, String> projectIdWriter = project ->
                     project.getGroupId() + ":" + project.getArtifactId() + ":" + project.getVersion();
+
+    private static Function<MavenProject, String> projectIdWriterWithoutVersion = project ->
+            project.getGroupId() + ":" + project.getArtifactId();
 
     public static String extractPluginConfigValue(String parameter, Plugin plugin) {
         String value = extractConfigValue(parameter, plugin.getConfiguration());
@@ -35,16 +38,16 @@ public class PluginUtils {
     }
 
     public static void writeChangedProjectsToFile(Collection<MavenProject> projects, File outputFile,
-                    StringJoiner joiner) {
+                    StringJoiner joiner, boolean skipModuleVersionInOutputFile) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile)))) {
-            writer.write(joinProjectIds(projects, joiner, projectIdWriter).toString());
+            writer.write(joinProjectIds(projects, joiner, skipModuleVersionInOutputFile ? projectIdWriterWithoutVersion : projectIdWriter).toString());
         } catch (IOException e) {
             logger.warn("Error writing changed projects to file on path :" + outputFile.getPath(), e);
         }
     }
 
-    public static void writeChangedProjectsToFile(Collection<MavenProject> projects, File outputFile) {
-        writeChangedProjectsToFile(projects, outputFile, new StringJoiner("\n"));
+    public static void writeChangedProjectsToFile(Collection<MavenProject> projects, File outputFile, boolean skipModuleVersionInOutputFile) {
+        writeChangedProjectsToFile(projects, outputFile, new StringJoiner("\n"), skipModuleVersionInOutputFile);
     }
 
     public static StringJoiner joinProjectIds(Collection<MavenProject> projects, StringJoiner joiner) {
