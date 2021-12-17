@@ -102,7 +102,7 @@ public class ChangedMojo extends AbstractMojo {
             changed.removeAll(ignoredProjects);
             List<MavenProject> sortedChanged = impactedProjects.get(changed);
 
-            PluginUtils.writeChangedProjectsToFile(sortedChanged, new File(outputFile), configuration.skipModuleVersionInOutputFile);
+            PluginUtils.writeChangedProjectsToFile(sortedChanged, new File(outputFile), configuration.skipModuleVersionInOutputFile, configuration.skipFilePathInOutputFile);
             session.getProjects().forEach(m -> m.getProperties()
                             .setProperty(UnchangedProjectsRemover.CHANGED_PROJECTS, PluginUtils.joinProjectIds
                                             (sortedChanged, new StringJoiner(",")).toString()));
