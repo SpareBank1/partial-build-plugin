@@ -39,7 +39,6 @@ public class MavenSessionMock {
                         RepoTest.LOCAL_DIR.resolve("./child5")
         ).map(MavenSessionMock::createProject).collect(Collectors.toList());
         MavenSession mavenSession = mock(MavenSession.class);
-        when(mavenSession.getCurrentProject()).thenReturn(projects.get(0));
         MavenExecutionRequest request = mock(MavenExecutionRequest.class);
         when(mavenSession.getRequest()).thenReturn(request);
         when(mavenSession.getUserProperties()).thenReturn(new Properties());

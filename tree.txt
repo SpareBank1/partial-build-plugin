@@ -1,0 +1,74 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.lesfurets:partial-build-plugin >-----------------
+[INFO] Building com.lesfurets:partial-build-plugin 3.0-SNAPSHOT
+[INFO] ----------------------------[ maven-plugin ]----------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ partial-build-plugin ---
+[INFO] com.lesfurets:partial-build-plugin:maven-plugin:3.0-SNAPSHOT
+[INFO] +- org.eclipse.jgit:org.eclipse.jgit:jar:6.2.0.202206071550-r:compile
+[INFO] |  +- com.googlecode.javaewah:JavaEWAH:jar:1.1.13:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.30:compile
+[INFO] +- com.google.inject:guice:jar:5.1.0:compile
+[INFO] |  +- javax.inject:javax.inject:jar:1:compile
+[INFO] |  +- aopalliance:aopalliance:jar:1.0:compile
+[INFO] |  \- com.google.guava:guava:jar:30.1-jre:compile
+[INFO] |     +- com.google.guava:failureaccess:jar:1.0.1:compile
+[INFO] |     +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:compile
+[INFO] |     +- com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[INFO] |     +- org.checkerframework:checker-qual:jar:3.5.0:compile
+[INFO] |     +- com.google.errorprone:error_prone_annotations:jar:2.3.4:compile
+[INFO] |     \- com.google.j2objc:j2objc-annotations:jar:1.3:compile
+[INFO] +- org.apache.maven:maven-core:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven:maven-model:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven:maven-settings:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven:maven-settings-builder:jar:3.8.6:provided
+[INFO] |  |  \- org.codehaus.plexus:plexus-sec-dispatcher:jar:2.0:provided
+[INFO] |  |     \- org.codehaus.plexus:plexus-cipher:jar:2.0:provided
+[INFO] |  +- org.apache.maven:maven-builder-support:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven:maven-repository-metadata:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven:maven-artifact:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven:maven-plugin-api:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven:maven-model-builder:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven:maven-resolver-provider:jar:3.8.6:provided
+[INFO] |  +- org.apache.maven.resolver:maven-resolver-impl:jar:1.6.3:provided
+[INFO] |  +- org.apache.maven.resolver:maven-resolver-api:jar:1.6.3:provided
+[INFO] |  +- org.apache.maven.resolver:maven-resolver-spi:jar:1.6.3:provided
+[INFO] |  +- org.apache.maven.resolver:maven-resolver-util:jar:1.6.3:provided
+[INFO] |  +- org.apache.maven.shared:maven-shared-utils:jar:3.3.4:provided
+[INFO] |  +- org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.3.5:provided
+[INFO] |  |  \- javax.annotation:javax.annotation-api:jar:1.2:provided
+[INFO] |  +- org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.5:provided
+[INFO] |  +- com.google.inject:guice:jar:no_aop:4.2.2:provided
+[INFO] |  +- org.codehaus.plexus:plexus-utils:jar:3.3.1:provided
+[INFO] |  +- org.codehaus.plexus:plexus-classworlds:jar:2.6.0:provided
+[INFO] |  +- org.codehaus.plexus:plexus-interpolation:jar:1.26:provided
+[INFO] |  \- org.apache.commons:commons-lang3:jar:3.8.1:provided
+[INFO] +- org.apache.maven.shared:maven-common-artifact-filters:jar:3.3.1:compile
+[INFO] |  \- commons-io:commons-io:jar:2.11.0:compile
+[INFO] +- org.codehaus.plexus:plexus-component-annotations:jar:2.1.1:compile
+[INFO] +- org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.6.4:provided
+[INFO] +- org.junit.jupiter:junit-jupiter-api:jar:5.9.0:test
+[INFO] |  +- org.opentest4j:opentest4j:jar:1.2.0:test
+[INFO] |  +- org.junit.platform:junit-platform-commons:jar:1.9.0:test
+[INFO] |  \- org.apiguardian:apiguardian-api:jar:1.1.2:test
+[INFO] +- org.mockito:mockito-core:jar:4.8.0:test
+[INFO] |  +- net.bytebuddy:byte-buddy:jar:1.12.14:test
+[INFO] |  +- net.bytebuddy:byte-buddy-agent:jar:1.12.14:test
+[INFO] |  \- org.objenesis:objenesis:jar:3.2:test
+[INFO] +- org.assertj:assertj-core:jar:3.23.1:test
+[INFO] \- org.apache.maven:maven-project:jar:2.2.1:test
+[INFO]    +- org.apache.maven:maven-profile:jar:2.2.1:test
+[INFO]    +- org.apache.maven:maven-artifact-manager:jar:2.2.1:test
+[INFO]    |  +- org.apache.maven.wagon:wagon-provider-api:jar:1.0-beta-6:test
+[INFO]    |  \- backport-util-concurrent:backport-util-concurrent:jar:3.1:test
+[INFO]    +- org.apache.maven:maven-plugin-registry:jar:2.2.1:test
+[INFO]    \- org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1:test
+[INFO]       +- junit:junit:jar:3.8.1:test
+[INFO]       \- classworlds:classworlds:jar:1.1-alpha-2:test
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.883 s
+[INFO] Finished at: 2022-09-09T12:57:55+02:00
+[INFO] ------------------------------------------------------------------------

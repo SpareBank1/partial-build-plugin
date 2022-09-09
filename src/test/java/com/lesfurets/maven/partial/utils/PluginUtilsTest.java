@@ -1,13 +1,13 @@
 package com.lesfurets.maven.partial.utils;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.codehaus.plexus.logging.console.ConsoleLoggerManager;
+import org.junit.jupiter.api.Test;
+import org.slf4j.impl.StaticLoggerBinder;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.codehaus.plexus.logging.console.ConsoleLoggerManager;
-import org.junit.Test;
-import org.slf4j.impl.StaticLoggerBinder;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PluginUtilsTest {
 

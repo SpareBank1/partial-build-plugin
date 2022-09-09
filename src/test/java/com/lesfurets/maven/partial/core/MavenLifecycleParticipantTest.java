@@ -1,14 +1,13 @@
 package com.lesfurets.maven.partial.core;
 
-import java.lang.reflect.Field;
-
-import org.apache.maven.execution.MavenSession;
-import org.codehaus.plexus.logging.Logger;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import com.lesfurets.maven.partial.extension.MavenLifecycleParticipant;
 import com.lesfurets.maven.partial.mocks.MavenSessionMock;
+import org.apache.maven.execution.MavenSession;
+import org.codehaus.plexus.logging.Logger;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.lang.reflect.Field;
 
 public class MavenLifecycleParticipantTest {
 

@@ -1,15 +1,15 @@
 package com.lesfurets.maven.partial.core;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import com.lesfurets.maven.partial.mocks.MavenSessionMock;
+import com.lesfurets.maven.partial.mocks.ModuleMock;
+import org.apache.maven.execution.MavenSession;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
-import org.apache.maven.execution.MavenSession;
-import org.junit.Test;
-
-import com.lesfurets.maven.partial.mocks.MavenSessionMock;
-import com.lesfurets.maven.partial.mocks.ModuleMock;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class ConfigurationTest {
 
@@ -29,14 +29,16 @@ public class ConfigurationTest {
         assertEquals("refs/test/branch", arguments.referenceBranch);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void badProperty() throws Exception {
-        MavenSession mavenSession = MavenSessionMock.get();
-        Properties properties = new Properties();
-        properties.setProperty("partial.badProperty", "refs/test/branch");
-        when(mavenSession.getUserProperties()).thenReturn(properties);
-        ModuleMock module = ModuleMock.module(mavenSession);
-        Configuration arguments = module.arguments();
+        Exception thrown = Assertions.assertThrows(Exception.class, () -> {
+            MavenSession mavenSession = MavenSessionMock.get();
+            Properties properties = new Properties();
+            properties.setProperty("partial.badProperty", "refs/test/branch");
+            when(mavenSession.getUserProperties()).thenReturn(properties);
+            ModuleMock module = ModuleMock.module(mavenSession);
+            Configuration arguments = module.arguments();
+        });
     }
 
 }

@@ -1,16 +1,19 @@
 package com.lesfurets.maven.partial.mocks;
 
-import java.io.*;
+import com.lesfurets.maven.partial.core.Property;
+import org.codehaus.plexus.logging.console.ConsoleLoggerManager;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.TestInstance;
+import org.slf4j.impl.StaticLoggerBinder;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.codehaus.plexus.logging.console.ConsoleLoggerManager;
-import org.junit.After;
-import org.junit.Before;
-import org.slf4j.impl.StaticLoggerBinder;
-
-import com.lesfurets.maven.partial.core.Property;
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class RepoTest {
 
     public static final String TEMPLATE_ZIP = "/project.zip";
@@ -28,7 +31,7 @@ public abstract class RepoTest {
         this.normalOut = System.out;
     }
 
-    @Before
+    @BeforeAll
     public void before() throws Exception {
         init();
         localRepoMock = new LocalRepoMock(false);
@@ -63,7 +66,7 @@ public abstract class RepoTest {
         return System.getProperty("projectVersion");
     }
 
-    @After
+    @AfterAll
     public void after() throws Exception {
         localRepoMock.close();
         System.setOut(normalOut);
