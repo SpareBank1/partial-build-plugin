@@ -1,13 +1,8 @@
 package com.lesfurets.maven.partial.core;
 
-import static com.lesfurets.maven.partial.utils.PluginUtils.extractPluginConfigValue;
-import static com.lesfurets.maven.partial.utils.PluginUtils.separatePattern;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.*;
-import java.util.stream.Collectors;
-
+import com.google.common.base.Strings;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.maven.MavenExecutionException;
 import org.apache.maven.execution.MavenSession;
@@ -15,9 +10,13 @@ import org.apache.maven.model.Plugin;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.artifact.filter.PatternIncludesArtifactFilter;
 
-import com.google.common.base.Strings;
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.lesfurets.maven.partial.utils.PluginUtils.extractPluginConfigValue;
+import static com.lesfurets.maven.partial.utils.PluginUtils.separatePattern;
 
 @Singleton
 public class Configuration {

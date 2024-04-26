@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.lesfurets</groupId>
   <artifactId>partial-build-plugin</artifactId>
-  <version>2.10-SNAPSHOT</version>
+  <version>3.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
   <name>${project.groupId}:${project.artifactId}</name>
   <description>
@@ -64,15 +64,15 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- Dependency versions -->
-    <jgit.version>4.4.1.201607150455-r</jgit.version>
-    <guice.version>4.0</guice.version>
-    <maven-core.version>3.3.9</maven-core.version>
-    <maven-common-artifact-filters.version>1.4</maven-common-artifact-filters.version>
-    <plexus-component-annotations.version>1.5.5</plexus-component-annotations.version>
-    <maven-plugin-annotations.version>3.4</maven-plugin-annotations.version>
-    <junit.version>4.11</junit.version>
-    <mockito-all.version>1.8.4</mockito-all.version>
-    <assertj-core.version>3.4.1</assertj-core.version>
+    <jgit.version>6.2.0.202206071550-r</jgit.version>
+    <guice.version>5.1.0</guice.version>
+    <maven-core.version>3.8.6</maven-core.version>
+    <maven-common-artifact-filters.version>3.3.1</maven-common-artifact-filters.version>
+    <plexus-component-annotations.version>2.1.1</plexus-component-annotations.version>
+    <maven-plugin-annotations.version>3.6.4</maven-plugin-annotations.version>
+    <junit-jupiter-api.version>5.9.0</junit-jupiter-api.version>
+    <mockito-core.version>4.8.0</mockito-core.version>
+    <assertj-core.version>3.23.1</assertj-core.version>
   </properties>
   <dependencies>
     <dependency>
@@ -89,6 +89,7 @@
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
       <version>${maven-core.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
@@ -113,15 +114,15 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit-jupiter-api.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>${mockito-all.version}</version>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito-core.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -130,51 +131,57 @@
       <version>${assertj-core.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>2.2.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.1</version>
+          <version>3.10.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.2.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.19.1</version>
+          <version>2.22.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-invoker-plugin</artifactId>
-          <version>2.0.0</version>
+          <version>3.3.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>2.7</version>
+          <version>3.3.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-plugin-plugin</artifactId>
-          <version>3.4</version>
+          <version>3.6.4</version>
         </plugin>
         <plugin>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>1.6</version>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9.1</version>
+          <version>3.4.1</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.plexus</groupId>
           <artifactId>plexus-component-metadata</artifactId>
-          <version>1.6</version>
+          <version>2.1.1</version>
         </plugin>
         <plugin>
           <groupId>org.sonatype.plugins</groupId>
           <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.7</version>
+          <version>1.6.13</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -192,8 +199,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>11</source>
+          <target>11</target>
         </configuration>
       </plugin>
       <plugin>
@@ -211,7 +218,7 @@
           </systemPropertyVariables>
         </configuration>
       </plugin>
-      <plugin>
+      <!--<plugin>
         <artifactId>maven-invoker-plugin</artifactId>
         <configuration>
           <setupIncludes>
@@ -243,7 +250,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin>-->
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>

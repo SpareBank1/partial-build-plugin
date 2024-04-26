@@ -1,23 +1,22 @@
 package com.lesfurets.maven.partial.core;
 
-import static java.util.stream.Collectors.toSet;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import com.lesfurets.maven.partial.mocks.LocalRepoMock;
+import com.lesfurets.maven.partial.mocks.RepoTest;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.ResetCommand;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.ResetCommand;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import com.lesfurets.maven.partial.mocks.LocalRepoMock;
-import com.lesfurets.maven.partial.mocks.RepoTest;
-
-import javax.enterprise.inject.Disposes;
+import static java.util.stream.Collectors.toSet;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public abstract class DifferentFilesTest extends RepoTest {
 
@@ -27,7 +26,7 @@ public abstract class DifferentFilesTest extends RepoTest {
     private static final String DEVELOP = "refs/heads/develop";
     private static final String REMOTE_DEVELOP = "refs/remotes/origin/develop";
 
-    @Before
+    @BeforeAll
     public void before() throws Exception {
         super.init();
         localRepoMock = new LocalRepoMock(true);
@@ -96,7 +95,7 @@ public abstract class DifferentFilesTest extends RepoTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void fetch() throws Exception {
         Git remoteGit = localRepoMock.getRemoteRepo().getGit();
         remoteGit.reset().setRef(DEVELOP).setMode(ResetCommand.ResetType.HARD).call();
@@ -115,7 +114,7 @@ public abstract class DifferentFilesTest extends RepoTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void fetchNonExistent() throws Exception {
         Git remoteGit = localRepoMock.getRemoteRepo().getGit();
         remoteGit.reset().setRef(DEVELOP).setMode(ResetCommand.ResetType.HARD).call();

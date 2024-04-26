@@ -1,20 +1,21 @@
 package com.lesfurets.maven.partial.core;
 
-import static org.junit.Assert.assertEquals;
+import com.google.inject.Guice;
+import com.lesfurets.maven.partial.mocks.MavenSessionMock;
+import com.lesfurets.maven.partial.mocks.RepoTest;
+import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.logging.console.ConsoleLogger;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.logging.console.ConsoleLogger;
-import org.junit.Test;
-
-import com.google.inject.Guice;
-import com.lesfurets.maven.partial.mocks.MavenSessionMock;
-import com.lesfurets.maven.partial.mocks.RepoTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ChangedProjectsTest extends RepoTest {
 

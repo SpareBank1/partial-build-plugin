@@ -1,15 +1,17 @@
 package com.lesfurets.maven.partial.utils;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.apache.maven.model.Build;
+import org.apache.maven.model.Dependency;
+import org.apache.maven.model.Plugin;
+import org.apache.maven.project.MavenProject;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.maven.model.*;
-import org.apache.maven.project.MavenProject;
-import org.junit.Before;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DependencyUtilsTest {
 
@@ -103,7 +105,7 @@ public class DependencyUtilsTest {
      */
     private MavenProject m8;
 
-    @Before
+    @BeforeAll
     public void setUp() {
         parent = newMavenProject(GROUP_ID, "parent", VERSION, null);
 

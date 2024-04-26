@@ -1,7 +1,12 @@
 package com.lesfurets.maven.partial.mocks;
 
-import java.io.IOException;
-
+import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
+import com.lesfurets.maven.partial.core.Configuration;
+import com.lesfurets.maven.partial.core.DifferentFiles;
+import com.lesfurets.maven.partial.core.DifferentFilesNative;
+import com.lesfurets.maven.partial.core.GuiceModule;
 import org.apache.maven.execution.MavenSession;
 import org.codehaus.plexus.logging.Logger;
 import org.codehaus.plexus.logging.console.ConsoleLogger;
@@ -10,11 +15,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.slf4j.impl.StaticLoggerBinder;
 
-import com.google.inject.*;
-import com.lesfurets.maven.partial.core.Configuration;
-import com.lesfurets.maven.partial.core.DifferentFiles;
-import com.lesfurets.maven.partial.core.DifferentFilesNative;
-import com.lesfurets.maven.partial.core.GuiceModule;
+import java.io.IOException;
 
 public class ModuleMock extends AbstractModule {
 
